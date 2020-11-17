@@ -1,4 +1,5 @@
 import scala.collection.parallel.CollectionConverters._
+import scala.collection.parallel._
 
 object Main {
 
@@ -10,6 +11,9 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     val parList = (40L to 80L).toList.par
+    parList.tasksupport = new ForkJoinTaskSupport(
+      new java.util.concurrent.ForkJoinPool(16)
+    )
     val meaningless = parList.map(fib)
     println(meaningless)
   }
