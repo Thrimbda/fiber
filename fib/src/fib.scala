@@ -10,12 +10,10 @@ object Main {
   }
 
   def main(args: Array[String]): Unit = {
-    val parList = (40L to 80L).toList.par
-    parList.tasksupport = new ForkJoinTaskSupport(
-      new java.util.concurrent.ForkJoinPool(16)
-    )
-    val meaningless = parList.map(fib)
-    println(meaningless)
+    val parList = (0L to 99L).toList.par
+    parList.foreach { n =>
+      println(s"fib for number $n is: ${fib(n)}")
+    }
   }
 
 }
